@@ -7,4 +7,4 @@ assignees: ''
 
 ---
 
-As a "role" I can "function" so that "expectation"
+As a **role** I can **function** so that **expectation**
