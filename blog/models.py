@@ -58,4 +58,4 @@ class Appointment(models.Model):
     approved = models.BooleanField(default=False)
     
     def __str__(self):
-        return self.title
+        return f"Appointment for {self.teacher_name} with {self.child_name} in {self.class_name}"
