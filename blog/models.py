@@ -45,3 +45,17 @@ class Comment(models.Model):
 
     def __str__(self):
         return f"Comment {self.body} by {self.name}"
+
+
+class Appointment(models.Model):
+    date = models.DateField()
+    parent_name = models.CharField(max_length=80)
+    teacher_name = models.CharField(max_length=80)
+    child_name = models.CharField(max_length=80)
+    class_name = models.CharField(max_length=80)
+    email = models.EmailField()
+    notes = models.TextField()
+    approved = models.BooleanField(default=False)
+    
+    def __str__(self):
+        return self.title
