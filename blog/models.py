@@ -5,6 +5,15 @@ from cloudinary.models import CloudinaryField
 
 STATUS = ((0, "Draft"), (1, "Published"))
 
+TIME_SLOTS = (
+    ('0','15:30 - 15:45'),
+    ('1', '15:45 - 16:00'),
+    ('2','16:00 - 16:15'),
+    ('3','16:15 - 16:30'),
+    ('4','16:30 - 16:45'),
+    ('5','16:45 - 17:00'),
+)
+
 
 class Post(models.Model):
     title = models.CharField(max_length=200, unique=True)
@@ -49,6 +58,7 @@ class Comment(models.Model):
 
 class Appointment(models.Model):
     date = models.DateField()
+    time = models.CharField(max_length=6, choices=TIME_SLOTS, default='0')
     parent_name = models.CharField(max_length=80)
     teacher_name = models.CharField(max_length=80)
     child_name = models.CharField(max_length=80)
@@ -56,6 +66,8 @@ class Appointment(models.Model):
     email = models.EmailField()
     notes = models.TextField()
     approved = models.BooleanField(default=False)
-    
-    def __str__(self):
-        return f"Appointment for {self.teacher_name} with {self.child_name} in {self.class_name}"
+
+
+def __str__(self):
+        return f"Appointment for {self.child_name} in {self.class_name} with \
+            {self.teacher_name}"

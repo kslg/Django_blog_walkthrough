@@ -29,9 +29,16 @@ class CommentAdmin (admin.ModelAdmin):
 @admin.register(Appointment)
 class AppointmentAdmin (admin.ModelAdmin):
 
-    list_display = ('date', 'parent_name', 'teacher_name', 'child_name', 'approved')
+    list_display = (
+        'date',
+        'time',
+        'parent_name',
+        'teacher_name',
+        'child_name',
+        'approved'
+    )
     search_fields = ['teacher_name', 'child_name']
     actions = ['approved']
 
-    def approved (self, request, queryset):
+    def approved(self, request, queryset):
         queryset.update(approved=True)
