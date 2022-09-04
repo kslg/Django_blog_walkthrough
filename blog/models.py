@@ -71,3 +71,10 @@ class Appointment(models.Model):
 def __str__(self):
         return f"Appointment for {self.child_name} in {self.class_name} with \
             {self.teacher_name}"
+
+
+class Teachers(models.Model):
+    teacher_name = models.ForeignKey(
+        Appointment, on_delete=models.CASCADE, related_name="appointments"
+    )
+    class_name = models.CharField(max_length=80)
