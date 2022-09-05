@@ -2,8 +2,11 @@ from django.shortcuts import render, get_object_or_404, reverse
 from django.views import generic, View
 from django.http import HttpResponseRedirect
 from django.contrib import messages
-from .models import Post 
+from .models import Post, Person
 from .forms import CommentForm
+
+from django.views.generic import ListView, CreateView, UpdateView
+from django.urls import reverse_lazy
 
 # Create your views here.
 class PostList(generic.ListView):
@@ -79,3 +82,16 @@ class PostLike(View):
         return HttpResponseRedirect(reverse('post_detail', args=[slug]))
 
 
+class PersonListView(ListView):
+    model = Person
+    context_object_name = 'people'
+
+class PersonCreateView(CreateView):
+    model = Person
+    fields = ('name', 'birthdate', 'country', 'city')
+    success_url = reverse_lazy('person_changelist')
+
+class PersonUpdateView(UpdateView):
+    model = Person
+    fields = ('name', 'birthdate', 'country', 'city')
+    success_url = reverse_lazy('person_changelist')
